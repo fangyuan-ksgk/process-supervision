@@ -4,13 +4,18 @@ from .prompt import PARSE_RULE_PROMPT, PARSE_AGENT_SYSTEM_PROMPT
 import json
 from typing import Optional
 from .rule import Rule
+
 def parse_rules_from_page_range(pdf_path, page_range):
     start_page, end_page = page_range
     img = get_pdf_contents(pdf_path, first_page=start_page, last_page=end_page)
     prompt = PARSE_RULE_PROMPT
     response = get_oai_response(prompt, img=img)
     rule_list = extract_json_from_content(response)
-    return rule_list
+    filtered_rules = []
+    for rule in rule_list:
+        if sanity_check_on_rule(rule):
+            filtered_rules.append(rule)
+    return filtered_rules
 
 def merge_rules(rule_list, new_rule_list):
     """ 
@@ -32,6 +37,21 @@ def fill_file_path(rule_list, file_path):
     for rule in rule_list:
         rule['file_path'] = file_path
     return rule_list
+
+def sanity_check_on_rule(rule: dict):
+    """ 
+    Sanity Check for a Rule Dict
+    """
+    if 'no' not in rule or 'description' not in rule or 'tags' not in rule or 'page_range' not in rule:
+        return False
+    
+    if '.' not in rule['no'] or ('.' in rule['no'] and len(rule['no'].split(".")) == 2 and rule['no'].split('.')[-1].isdigit()):
+        return False
+    
+    if rule['page_range'][0] >= rule['page_range'][1] or len(rule['page_range']) != 2:
+        return False
+    
+    return True
 
 
 def present_current_rule_list(rule_list):
@@ -63,15 +83,10 @@ def rule_list_filter(rule_list):
     # Remove wrong no. like 1.a (pattern should be 1.2.a instead of 1.a) so one .a shows up while there is only one number as well
     filtered_rules = []
     for rule in rule_list:
-        if '.' in rule['no']:
-            # Check if the rule number follows the natural pattern (e.g., 1.2, 1.2.3)
-            parts = rule['no'].split('.')
-            
-            if len(parts) == 2 and not parts[-1].isdigit():
-                continue 
-            else:
-                filtered_rules.append(rule)
-
+        if not sanity_check_on_rule(rule):
+            continue
+        else:
+            filtered_rules.append(rule)
     return filtered_rules
 
 
@@ -166,8 +181,9 @@ class ParseAgent:
         """
         chunk_size = 10
         for i in range(0, self.page_count, chunk_size):
-            print(f"Parsing rules from range: {i}-{i + chunk_size}")
-            parsed_rules = self.parse_rules_from_page_range((i, i + chunk_size))
+            end_page = min(i + chunk_size, self.page_count)
+            print(f"Parsing rules from range: {i + 1}-{end_page}")
+            self.parse_rules_from_page_range((i + 1, end_page))
             
     def save_rules(self, output_dir="database/rule"):
         converted_rules = convert_and_store_rules(self.rule_list, output_dir)
