@@ -1,0 +1,243 @@
+
+vars: {
+  d2-config: {
+    sketch: true
+  }
+}
+classes: {
+  process: {
+    label: ""
+    shape: rectangle
+    style: {
+      fill: lightblue
+      shadow: true
+    }
+  }
+}
+
+Accident_Prevention_on_SMRT.class: process
+Accident_Prevention_on_SMRT.label: "Accident Prevention on SMRT"
+Accident_Prevention_on_SMRT: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Staff_Training.class: process
+Staff_Training.label: "Staff Training"
+Staff_Training: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Passenger_Education.class: process
+Passenger_Education.label: "Passenger Education"
+Passenger_Education: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+AI-Automated_Maintenance.class: process
+AI-Automated_Maintenance.label: "AI-Automated Maintenance"
+AI-Automated_Maintenance: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Real-time_Monitoring.class: process
+Real-time_Monitoring.label: "Real-time Monitoring"
+Real-time_Monitoring: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Data_Analysis.class: process
+Data_Analysis.label: "Data Analysis"
+Data_Analysis: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Machine_Learning_Algorithms.class: process
+Machine_Learning_Algorithms.label: "Machine Learning Algorithms"
+Machine_Learning_Algorithms: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Automated_Inspection.class: process
+Automated_Inspection.label: "Automated Inspection"
+Automated_Inspection: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Predictive_Maintenance.class: process
+Predictive_Maintenance.label: "Predictive Maintenance"
+Predictive_Maintenance: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Regular_Maintenance.class: process
+Regular_Maintenance.label: "Regular Maintenance"
+Regular_Maintenance: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Safety_Protocols.class: process
+Safety_Protocols.label: "Safety Protocols"
+Safety_Protocols: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Emergency_Response_Systems.class: process
+Emergency_Response_Systems.label: "Emergency Response Systems"
+Emergency_Response_Systems: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Public_Awareness_Campaigns.class: process
+Public_Awareness_Campaigns.label: "Public Awareness Campaigns"
+Public_Awareness_Campaigns: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Accident_Prevention_on_SMRT -> Staff_Training: {
+  label: "involves"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Accident_Prevention_on_SMRT -> Passenger_Education: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Accident_Prevention_on_SMRT -> AI-Automated_Maintenance: {
+  label: "can be improved by"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Accident_Prevention_on_SMRT -> Regular_Maintenance: {
+  label: "requires"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Accident_Prevention_on_SMRT -> Safety_Protocols: {
+  label: "implements"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Accident_Prevention_on_SMRT -> Emergency_Response_Systems: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Passenger_Education -> Public_Awareness_Campaigns: {
+  label: "involves"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+AI-Automated_Maintenance -> Real-time_Monitoring: {
+  label: "facilitates"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+AI-Automated_Maintenance -> Data_Analysis: {
+  label: "utilizes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+AI-Automated_Maintenance -> Automated_Inspection: {
+  label: "implements"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Real-time_Monitoring -> Accident_Prevention_on_SMRT: {
+  label: "contributes to"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Data_Analysis -> Machine_Learning_Algorithms: {
+  label: "employs"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Machine_Learning_Algorithms -> Predictive_Maintenance: {
+  label: "powers"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Automated_Inspection -> Regular_Maintenance: {
+  label: "improves"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Predictive_Maintenance -> Regular_Maintenance: {
+  label: "enhances"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Public_Awareness_Campaigns -> Accident_Prevention_on_SMRT: {
+  label: "supports"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}

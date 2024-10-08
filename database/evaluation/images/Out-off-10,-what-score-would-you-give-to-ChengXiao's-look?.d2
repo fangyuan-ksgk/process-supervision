@@ -1,0 +1,189 @@
+
+vars: {
+  d2-config: {
+    sketch: true
+  }
+}
+classes: {
+  process: {
+    label: ""
+    shape: rectangle
+    style: {
+      fill: lightblue
+      shadow: true
+    }
+  }
+}
+
+Query.class: process
+Query.label: "Query"
+Query: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Identify_subject.class: process
+Identify_subject.label: "Identify subject"
+Identify_subject: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Understand_rating_scale.class: process
+Understand_rating_scale.label: "Understand rating scale"
+Understand_rating_scale: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Consider_subjectivity.class: process
+Consider_subjectivity.label: "Consider subjectivity"
+Consider_subjectivity: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Assess_ChengXiaos_appearance.class: process
+Assess_ChengXiaos_appearance.label: "Assess ChengXiao's appearance"
+Assess_ChengXiaos_appearance: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Evaluate_facial_features.class: process
+Evaluate_facial_features.label: "Evaluate facial features"
+Evaluate_facial_features: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Consider_body_proportions.class: process
+Consider_body_proportions.label: "Consider body proportions"
+Consider_body_proportions: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Analyze_fashion_sense.class: process
+Analyze_fashion_sense.label: "Analyze fashion sense"
+Analyze_fashion_sense: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Factor_in_personal_bias.class: process
+Factor_in_personal_bias.label: "Factor in personal bias"
+Factor_in_personal_bias: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Determine_final_score.class: process
+Determine_final_score.label: "Determine final score"
+Determine_final_score: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Query -> Identify_subject: {
+  label: "requires"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Query -> Understand_rating_scale: {
+  label: "specifies"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Identify_subject -> Assess_ChengXiaos_appearance: {
+  label: "leads to"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Understand_rating_scale -> Determine_final_score: {
+  label: "informs"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Consider_subjectivity -> Assess_ChengXiaos_appearance: {
+  label: "influences"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Assess_ChengXiaos_appearance -> Evaluate_facial_features: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Assess_ChengXiaos_appearance -> Consider_body_proportions: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Assess_ChengXiaos_appearance -> Analyze_fashion_sense: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Evaluate_facial_features -> Determine_final_score: {
+  label: "contributes to"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Consider_body_proportions -> Determine_final_score: {
+  label: "contributes to"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Analyze_fashion_sense -> Determine_final_score: {
+  label: "contributes to"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Factor_in_personal_bias -> Determine_final_score: {
+  label: "influences"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}

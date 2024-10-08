@@ -1,0 +1,187 @@
+
+vars: {
+  d2-config: {
+    sketch: true
+  }
+}
+classes: {
+  process: {
+    label: ""
+    shape: rectangle
+    style: {
+      fill: lightblue
+      shadow: true
+    }
+  }
+}
+
+Apply_to_MIT.class: process
+Apply_to_MIT.label: "Apply to MIT"
+Apply_to_MIT: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Research_Requirements.class: process
+Research_Requirements.label: "Research Requirements"
+Research_Requirements: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Prepare_Application_Materials.class: process
+Prepare_Application_Materials.label: "Prepare Application Materials"
+Prepare_Application_Materials: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Submit_Application.class: process
+Submit_Application.label: "Submit Application"
+Submit_Application: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Standardized_Tests.class: process
+Standardized_Tests.label: "Standardized Tests"
+Standardized_Tests: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Academic_Transcripts.class: process
+Academic_Transcripts.label: "Academic Transcripts"
+Academic_Transcripts: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Letters_of_Recommendation.class: process
+Letters_of_Recommendation.label: "Letters of Recommendation"
+Letters_of_Recommendation: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Essays.class: process
+Essays.label: "Essays"
+Essays: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Extracurricular_Activities.class: process
+Extracurricular_Activities.label: "Extracurricular Activities"
+Extracurricular_Activities: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Application_Fee.class: process
+Application_Fee.label: "Application Fee"
+Application_Fee: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Wait_for_Decision.class: process
+Wait_for_Decision.label: "Wait for Decision"
+Wait_for_Decision: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Apply_to_MIT -> Research_Requirements: {
+  label: "starts with"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Research_Requirements -> Prepare_Application_Materials: {
+  label: "leads to"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Prepare_Application_Materials -> Standardized_Tests: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Prepare_Application_Materials -> Academic_Transcripts: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Prepare_Application_Materials -> Letters_of_Recommendation: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Prepare_Application_Materials -> Essays: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Prepare_Application_Materials -> Extracurricular_Activities: {
+  label: "includes"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Prepare_Application_Materials -> Submit_Application: {
+  label: "leads to"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Submit_Application -> Application_Fee: {
+  label: "requires"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Submit_Application -> Wait_for_Decision: {
+  label: "followed by"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
