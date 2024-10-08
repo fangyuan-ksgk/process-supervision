@@ -7,11 +7,11 @@ import re
 import json
 import glob
 from pypdf import PdfReader
-from .prompt import PARSE_AOR_PROMPT, PARSE_INVOICE_PROMPT
+from .prompt import PARSE_RULE_PROMPT
 from .rule import Rule
 from PIL import Image
-import email
-from email import policy
+import ast
+import subprocess
 
 
 oai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -54,19 +54,55 @@ def get_oai_response(prompt, system_prompt="You are a helpful assistant", img=No
     return response.choices[0].message.content
 
 
-def get_pdf_contents(pdf_file, first_page=1, last_page=1):
-    # Convert the first page of the PDF to an image
+
+def get_pdf_page_count(pdf_path):
+    try:
+        result = subprocess.run(['pdfinfo', pdf_path], capture_output=True, text=True, check=True)
+        for line in result.stdout.split('\n'):
+            if line.startswith('Pages:'):
+                return int(line.split(':')[1].strip())
+    except subprocess.CalledProcessError:
+        print("Error: pdfinfo command failed. Make sure it's installed and the PDF is valid.")
+    except FileNotFoundError:
+        print("Error: pdfinfo command not found. Make sure it's installed on your system.")
+    return None
+
+
+def get_pdf_contents(pdf_file, first_page=1, last_page=1, max_height=1000):
+    # Convert the specified pages of the PDF to images
     images = convert_from_path(pdf_file, first_page=first_page, last_page=last_page)
 
     pdf_base64_images = []
     for pdf_image in images:
-        # Convert PIL Image to base64 string
+        # Calculate new dimensions while maintaining aspect ratio
+        aspect_ratio = pdf_image.width / pdf_image.height
+        new_height = min(pdf_image.height, max_height)
+        new_width = int(new_height * aspect_ratio)
+        
+        # Resize the image
+        pdf_image = pdf_image.resize((new_width, new_height), Image.LANCZOS)
+        
+        # Convert to grayscale
+        pdf_image = pdf_image.convert('L')
+        
+        # Convert PIL Image to base64 string with reduced quality
         buffered = io.BytesIO()
-        pdf_image.save(buffered, format="PNG")
+        pdf_image.save(buffered, format="JPEG", quality=50)  # Reduced quality
         pdf_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
         pdf_base64_images.append(pdf_image_base64)
         
     return pdf_base64_images
+
+
+def chunk_to_rule_list(pdf_path, l, r):
+    img = get_pdf_contents(pdf_path, first_page=l, last_page=r)
+    prompt = PARSE_RULE_PROMPT
+    response = get_oai_response(prompt, img=img)
+    rule_list = extract_json_from_content(response)
+    return rule_list
+
+
+
 
 
 def pdf_to_img(pdf_file, first_page=1, last_page=1):
@@ -84,110 +120,66 @@ def get_pdf_text(pdf_path: str) -> str:
     return pdf_text
 
 
-import ast 
-
-def load_json_with_ast(json_str):
-    json_str_cleaned = json_str.strip()
-    papers = ast.literal_eval(json_str_cleaned)
-    return papers
-
-
-def parse_json_response(content):
-    try:
-        # Try to parse the entire content as JSON
-        json_data = json.loads(content)
-    except json.JSONDecodeError:
-        # If that fails, try to extract JSON object using regex
-        match = re.search(r'\{.*?\}', content, re.DOTALL)
-        if match:
-            json_str = match.group(0)
-            try:
-                json_data = json.loads(json_str)
-            except json.JSONDecodeError:
-                try:
-                    json_data = load_json_with_ast(json_str)
-                except:
-                    return {}
-        else:
-            return {}
-    
-    return json_data
-
-def read_eml(file_path):
-    with open(file_path, 'rb') as file:
-        msg = email.message_from_binary_file(file, policy=policy.default)
-    
-    # Extract basic information
-    sender = msg['From']
-    recipient = msg['To']
-    subject = msg['Subject']
-    date = msg['Date']
-
-    # Get the email body
-    if msg.is_multipart():
-        for part in msg.iter_parts():
-            if part.get_content_type() == 'text/plain':
-                body = part.get_content()
-                break
+def extract_json_from_content(content):
+    match = re.search(r'```json\s*(.*?)\s*```', content, re.DOTALL)
+    if match:
+        try:
+            json_data = json.loads(match.group(1))
+            return json_data
+        except json.JSONDecodeError:
+            print("Error: JSON parsing failed.")
+            return []
     else:
-        body = msg.get_content()
-
-    # Get attachments
-    attachments = []
-    for part in msg.iter_attachments():
-        attachments.append(part.get_filename())
-
-    return {
-        'sender': sender,
-        'recipient': recipient,
-        'subject': subject,
-        'date': date,
-        'body': body,
-        'attachments': attachments
-    }
+        print("No JSON content found within ```json ... ``` blocks.")
+        return []
 
 
-def preprocess_aor(aor_dir: str = "database/aor"):
-    pdf_paths = glob.glob(f"{aor_dir}/*.pdf")
-    eml_paths = glob.glob(f"{aor_dir}/*.eml")
-    print("Preprocessing AORs...")
-    for file_path in pdf_paths + eml_paths:
-        # TBD: Skip preprocessing if things are already preprocessed
+def preprocess_rules(rule_dir: str = "database/rulebook"):
+    pdf_paths = glob.glob(f"{rule_dir}/*.pdf")
+    print("Preprocessing Rules...")
+    rules = []
+    for file_path in pdf_paths:
+        print(f"Processing file: {file_path}")
+        
         if file_path.endswith(".pdf"):
-            pdf_txt = get_pdf_text(file_path)
-        elif file_path.endswith(".eml"):
-            email_data = read_eml(file_path)
-            pdf_txt = email_data.get('body')
+            rule_text = get_pdf_text(file_path)
+            print(f"Extracted text from PDF: {file_path}")
         else:
             raise ValueError("Unknown file format")
 
-        prompt = PARSE_AOR_PROMPT.format(pdf_txt=pdf_txt)
+        prompt = PARSE_RULE_PROMPT
+        print("Generated prompt for rule parsing")
         max_tries = 3
-        aor = None
-        while not aor and max_tries > 0:
+        parsed_rules = None
+        while parsed_rules is None and max_tries > 0:
+            print(f"Attempt {4 - max_tries} to parse rule")
             response = get_oai_response(prompt)
-            parsed_aor_dict = parse_json_response(response)
-            try:
-                aor = AOR(**parsed_aor_dict)
-                aor.pdf_text = pdf_txt
-                aor.pdf_path = file_path
-                aor.save(aor_dir)
-            except:
+            print("Received response from OpenAI")
+            parsed_rules = extract_json_from_content(response)
+            print("Parsed JSON response")
+            if parsed_rules is None:
                 max_tries -= 1
                 continue
-        
-        if not aor:
-            print(f"Failed to parse AOR: {file_path}")
             
-
-
-
+            for parsed_rule_dict in parsed_rules:
+                try:
+                    rule = Rule(**parsed_rule_dict)
+                    rule.file_path = file_path
+                    rule.save(rule_dir)
+                    rules.append(rule)
+                    print(f"Successfully parsed and saved rule: {file_path}")
+                except Exception as e:
+                    print(f"Error parsing rule: {e}")
+        
+        if parsed_rules is None:
+            print(f"Failed to parse Rule after all attempts: {file_path}")
+    
+    return rules
 
 
 def file_to_img(file_path):
     if file_path.endswith(".pdf"):
         img = pdf_to_img(file_path)
-        
     elif file_path.endswith((".png", ".jpg", ".jpeg")):
         with Image.open(file_path) as img_raw:
             buffered = io.BytesIO()
@@ -196,36 +188,3 @@ def file_to_img(file_path):
     else:
         raise ValueError("Unknown file format")
     return img
-
-
-def preprocess_invoice(invoice_dir: str = "database/invoice"):
-    invoice_paths = [file for file in glob.glob(f"{invoice_dir}/*") if not file.endswith(".json")]
-
-    print("Preprocessing Invoices...")
-    for invoice_path in invoice_paths:
-        if invoice_path.endswith(".pdf"):
-            img = get_pdf_contents(invoice_path)[0]
-        elif invoice_path.endswith(".png") or invoice_path.endswith(".jpg") or invoice_path.endswith(".jpeg"):
-            with Image.open(invoice_path) as img_raw:
-                buffered = io.BytesIO()
-                img_raw.save(buffered, format="PNG")
-                img = base64.b64encode(buffered.getvalue()).decode('utf-8')
-        else:
-            raise ValueError("Unknown file format")
-        
-        max_tries = 3
-        invoice = None
-        while not invoice and max_tries > 0:
-            response = get_oai_response(PARSE_INVOICE_PROMPT, img=img, img_type="base64")
-            parsed_invoice_dict = parse_json_response(response)
-            try:
-                invoice = Invoice(**parsed_invoice_dict)
-            except:
-                max_tries -= 1
-                continue
-        
-        if invoice:
-            invoice.invoice_path = invoice_path
-            invoice.save(invoice_dir)
-        else:
-            print(f"Failed to parse invoice: {invoice_path}")
