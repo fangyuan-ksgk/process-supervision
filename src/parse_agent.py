@@ -1,7 +1,8 @@
 # Rule Parsing Agent
-from utils import get_pdf_page_count, get_pdf_contents, get_oai_response, extract_json_from_content
-from prompt import PARSE_RULE_PROMPT, PARSE_AGENT_SYSTEM_PROMPT
+from .utils import get_pdf_page_count, get_pdf_contents, get_oai_response, extract_json_from_content
+from .prompt import PARSE_RULE_PROMPT, PARSE_AGENT_SYSTEM_PROMPT
 import json
+from typing import Optional
 
 def parse_rules_from_page_range(pdf_path, page_range):
     start_page, end_page = page_range
@@ -34,18 +35,37 @@ class ParseAgent:
         self.pdf_path = pdf_path
         self.page_count = get_pdf_page_count(pdf_path)
         self.rule_list = []
+        self.records = []
 
-    def process_command(self, user_input):
-        prompt = f"{PARSE_AGENT_SYSTEM_PROMPT}\n\nUser Input: {user_input}\n\nCurrent Rule List: {json.dumps(self.rule_list, indent=2)}\n\nProvide your response in JSON format."
+    def process_command(self, user_input: Optional[str] = None):
+        user_input_str = "\n\nUser Input: " + user_input if user_input else ""
+        prompt = f"{PARSE_AGENT_SYSTEM_PROMPT}{user_input_str}\n\nCurrent Rule List: {json.dumps(self.rule_list, indent=2)}\nTotal Pages: {self.page_count}\n\nProvide your response in JSON format."
         response = get_oai_response(prompt)
-        action = json.loads(response)
+        try:
+            action = extract_json_from_content(response)
+        except json.JSONDecodeError:
+            action = {"error": "Failed to parse JSON from response"}
+        except Exception as e:
+            action = {"error": f"An unexpected error occurred: {str(e)}"}
 
         if action['tool'] == 'parse_rules_from_range':
-            result = self.parse_rules_from_page_range(action['page_range'])
+            record = self.parse_rules_from_page_range(action['page_range'])
+        elif action['tool'] == 'stop':
+            record = {"message": "Parsing complete"}
+            return True
         else:
-            result = {"error": "Invalid tool specified"}
-
-        return result
+            record = {"error": "Invalid tool specified"}
+        self.records.append(record)
+        
+        return False
+    
+    def run(self):
+        """ 
+        Parsing Agent Main Loop
+        """
+        while True:
+            if self.process_command():
+                break
 
     def parse_rules_from_page_range(self, page_range):
         parsed_rules = parse_rules_from_page_range(self.pdf_path, page_range)
