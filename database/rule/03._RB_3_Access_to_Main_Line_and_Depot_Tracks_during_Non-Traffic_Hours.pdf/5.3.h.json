@@ -1,0 +1,15 @@
+{
+    "no": "5.3.h",
+    "description": "Confirmation and installation procedures for SCD when traction power is off.",
+    "tags": [
+        "SCD",
+        "traction power",
+        "safety",
+        "installation"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        41,
+        41
+    ]
+}

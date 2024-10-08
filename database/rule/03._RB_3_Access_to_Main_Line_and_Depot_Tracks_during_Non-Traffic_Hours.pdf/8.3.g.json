@@ -1,0 +1,14 @@
+{
+    "no": "8.3.g",
+    "description": "Inform duty RSM about extension of work into Traffic Hours and book-out time.",
+    "tags": [
+        "duty RSM",
+        "traffic hours",
+        "work extension"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        81,
+        82
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "no": "7.5",
+    "description": "When EMU train(s) testing is required, specific procedures are to be followed by duty CC of EWL and PSCO.",
+    "tags": [
+        "EMU testing",
+        "safety",
+        "procedure"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        71,
+        72
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "no": "4.1.a.v",
+    "description": "Conduct a mandatory Tool-box Brief with safety and work instructions before track access.",
+    "tags": [
+        "safety",
+        "toolbox talk",
+        "work briefing",
+        "track access"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        11,
+        12
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "no": "1.3",
+    "description": "Risks associated with accessing the track during Traffic Hours.",
+    "tags": [
+        "risks",
+        "safety",
+        "traffic hours"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        5,
+        5
+    ]
+}

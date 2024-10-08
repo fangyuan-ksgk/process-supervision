@@ -1,0 +1,14 @@
+{
+    "no": "8.1",
+    "description": "Workflow for access to track for work during non-traffic hours which extends into traffic hours, including protection requirements.",
+    "tags": [
+        "workflow",
+        "non-traffic hours",
+        "protection"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        77,
+        78
+    ]
+}

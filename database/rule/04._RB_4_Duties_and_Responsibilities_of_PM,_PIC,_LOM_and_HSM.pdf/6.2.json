@@ -1,0 +1,14 @@
+{
+    "no": "6.2",
+    "description": "Assume traction power is 'ON' unless confirmed 'OFF'.",
+    "tags": [
+        "traction power",
+        "safety",
+        "confirmation"
+    ],
+    "file_path": "raw/rulebook/04. RB 4_Duties and Responsibilities of PM, PIC, LOM and HSM.pdf",
+    "page_range": [
+        23,
+        24
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "no": "4.1.b.v",
+    "description": "Avoid gaps near vehicles or buffer stops unless confirmed safe.",
+    "tags": [
+        "safety",
+        "gap awareness",
+        "track crossing"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        14,
+        14
+    ]
+}

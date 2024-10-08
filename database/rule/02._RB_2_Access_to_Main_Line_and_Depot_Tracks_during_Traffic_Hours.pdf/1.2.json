@@ -1,0 +1,15 @@
+{
+    "no": "1.2",
+    "description": "People involved in accessing the track during Traffic Hours, including roles and responsibilities.",
+    "tags": [
+        "staff",
+        "roles",
+        "responsibilities",
+        "traffic hours"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        5,
+        5
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "no": "5.9",
+    "description": "Instructions for handling Short Circuit Device (SCD) when an Engineer's train or track trolley needs to move past it. The rule details steps for both Engineer\u2019s Trains and Track Trolleys.",
+    "tags": [
+        "safety",
+        "SCD",
+        "engineer's train",
+        "track trolley",
+        "procedure"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        54,
+        55
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "no": "1.1.a",
+    "description": "Implementation of Track Access Management System (Stage 1) for Main Line during Non-Traffic Hours.",
+    "tags": [
+        "track access",
+        "management system",
+        "non-traffic hours"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        1,
+        1
+    ]
+}

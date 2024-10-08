@@ -1,0 +1,14 @@
+{
+    "no": "8.5",
+    "description": "Actions required by Duty SM to ensure work continues without issues during Traffic Hours.",
+    "tags": [
+        "duty SM",
+        "traffic hours",
+        "work continuation"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        83,
+        84
+    ]
+}

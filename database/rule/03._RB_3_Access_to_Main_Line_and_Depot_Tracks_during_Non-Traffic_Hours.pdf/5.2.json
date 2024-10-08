@@ -1,0 +1,15 @@
+{
+    "no": "5.2",
+    "description": "Procedures when PM/PIC arrives at station where access to track is to be taken.",
+    "tags": [
+        "procedures",
+        "arrival",
+        "PM/PIC",
+        "track access"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        33,
+        34
+    ]
+}

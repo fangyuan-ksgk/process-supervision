@@ -1,0 +1,15 @@
+{
+    "no": "5.2",
+    "description": "Ensure safety requirements for personnel limits in working parties and specific conditions for roles like Ground Controller.",
+    "tags": [
+        "safety",
+        "personnel limits",
+        "working party",
+        "Ground Controller"
+    ],
+    "file_path": "raw/rulebook/04. RB 4_Duties and Responsibilities of PM, PIC, LOM and HSM.pdf",
+    "page_range": [
+        19,
+        20
+    ]
+}

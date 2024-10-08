@@ -1,0 +1,15 @@
+{
+    "no": "4.1.a.iv",
+    "description": "Trainer to trainee ratio should not exceed three in supervised field training.",
+    "tags": [
+        "safety",
+        "training",
+        "trainee",
+        "track"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        11,
+        12
+    ]
+}

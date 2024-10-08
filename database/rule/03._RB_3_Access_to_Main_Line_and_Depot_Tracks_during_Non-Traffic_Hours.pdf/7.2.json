@@ -1,0 +1,14 @@
+{
+    "no": "7.2",
+    "description": "Procedure for switching off traction power for a particular power zone.",
+    "tags": [
+        "traction power",
+        "power zone",
+        "switch off"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        69,
+        70
+    ]
+}

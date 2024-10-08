@@ -1,0 +1,14 @@
+{
+    "no": "5.3",
+    "description": "Authorization process for access to track for a particular traction power zone.",
+    "tags": [
+        "authorization",
+        "track access",
+        "traction power zone"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        38,
+        40
+    ]
+}

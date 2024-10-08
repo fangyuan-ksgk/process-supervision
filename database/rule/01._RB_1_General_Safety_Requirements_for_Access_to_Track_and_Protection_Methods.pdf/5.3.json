@@ -1,0 +1,14 @@
+{
+    "no": "5.3",
+    "description": "Updated protection method for access during traffic hours.",
+    "tags": [
+        "protection",
+        "traffic hours",
+        "update"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        1,
+        2
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "no": "3.2",
+    "description": "The role and positioning of the HSM, including necessary equipment and conditions for deployment.",
+    "tags": [
+        "HSM",
+        "safety",
+        "train",
+        "positioning",
+        "equipment"
+    ],
+    "file_path": "raw/rulebook/04. RB 4_Duties and Responsibilities of PM, PIC, LOM and HSM.pdf",
+    "page_range": [
+        12,
+        13
+    ]
+}

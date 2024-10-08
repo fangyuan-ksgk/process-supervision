@@ -1,0 +1,15 @@
+{
+    "no": "3.0",
+    "description": "Added application forms for access to main line and transfer berth tracks.",
+    "tags": [
+        "application forms",
+        "access",
+        "main line",
+        "transfer berth"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        1,
+        5
+    ]
+}

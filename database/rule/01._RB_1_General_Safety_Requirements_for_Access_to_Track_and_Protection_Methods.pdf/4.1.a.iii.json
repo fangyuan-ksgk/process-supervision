@@ -1,0 +1,15 @@
+{
+    "no": "4.1.a.iii",
+    "description": "Limit the number of staff in a working party to six during traffic hours.",
+    "tags": [
+        "safety",
+        "track",
+        "working party",
+        "staff limit"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        11,
+        12
+    ]
+}

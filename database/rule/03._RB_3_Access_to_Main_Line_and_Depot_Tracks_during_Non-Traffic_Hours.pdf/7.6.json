@@ -1,0 +1,14 @@
+{
+    "no": "7.6",
+    "description": "Granting access to track for application with power off requires verification and authorization by CC of EWL and PSCO.",
+    "tags": [
+        "track access",
+        "power off",
+        "authorization"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        73,
+        74
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "no": "9.1.5",
+    "description": "Ensure tasks on the track confirm traction power is OFF.",
+    "tags": [
+        "safety",
+        "traction power",
+        "confirmation"
+    ],
+    "file_path": "raw/rulebook/04. RB 4_Duties and Responsibilities of PM, PIC, LOM and HSM.pdf",
+    "page_range": [
+        37,
+        37
+    ]
+}

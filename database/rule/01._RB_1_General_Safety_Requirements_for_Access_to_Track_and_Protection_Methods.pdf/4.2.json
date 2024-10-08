@@ -1,0 +1,14 @@
+{
+    "no": "4.2",
+    "description": "Actions for staff on or near tracks when trains are approaching.",
+    "tags": [
+        "safety",
+        "staff procedure",
+        "train approaching"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        1,
+        2
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "no": "7.1",
+    "description": "Procedure for securing a train in a siding and preparing for work during traffic hours.",
+    "tags": [
+        "siding",
+        "train security",
+        "traffic hours",
+        "procedure"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        1,
+        44
+    ]
+}

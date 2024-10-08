@@ -1,0 +1,14 @@
+{
+    "no": "4.1.b.vi",
+    "description": "Always assume traction power is ON unless physically confirmed OFF.",
+    "tags": [
+        "safety",
+        "traction power",
+        "confirmation"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        14,
+        14
+    ]
+}

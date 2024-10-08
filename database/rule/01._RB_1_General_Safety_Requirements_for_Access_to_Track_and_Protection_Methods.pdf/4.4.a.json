@@ -1,0 +1,14 @@
+{
+    "no": "4.4.a",
+    "description": "Procedure for accessing track during lightning risk, including checking weather.",
+    "tags": [
+        "safety",
+        "lightning",
+        "weather check"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        19,
+        20
+    ]
+}

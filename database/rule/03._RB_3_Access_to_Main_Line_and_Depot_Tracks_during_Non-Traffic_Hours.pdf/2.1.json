@@ -1,0 +1,13 @@
+{
+    "no": "2.1",
+    "description": "Modification of Protection Keyswitch (PKS) on North-South and East-West Lines (NSEWL).",
+    "tags": [
+        "protection keyswitch",
+        "NSEWL"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        1,
+        1
+    ]
+}

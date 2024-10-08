@@ -1,0 +1,14 @@
+{
+    "no": "7.1",
+    "description": "Workflow for coordination in OCC for access to track during non-traffic hours.",
+    "tags": [
+        "coordination",
+        "OCC",
+        "non-traffic hours"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        68,
+        69
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "no": "5.7",
+    "description": "Installation or removal of SCD when there is an Engineer's Train at the platform track. The procedure includes communication and safety checks before proceeding with the installation or removal of SCD.",
+    "tags": [
+        "safety",
+        "installation",
+        "removal",
+        "SCD",
+        "engineer",
+        "train",
+        "platform"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        51,
+        52
+    ]
+}

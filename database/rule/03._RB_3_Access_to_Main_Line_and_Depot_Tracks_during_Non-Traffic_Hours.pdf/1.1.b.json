@@ -1,0 +1,14 @@
+{
+    "no": "1.1.b",
+    "description": "Stage 1 of the Track Management System (TAMS) for the North South East West Line (NSEWL).",
+    "tags": [
+        "management system",
+        "TAMS",
+        "NSEWL"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        1,
+        1
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "no": "3.2",
+    "description": "Procedure for access requests involving deviations from rules.",
+    "tags": [
+        "deviation",
+        "procedure",
+        "access requests"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        10,
+        10
+    ]
+}

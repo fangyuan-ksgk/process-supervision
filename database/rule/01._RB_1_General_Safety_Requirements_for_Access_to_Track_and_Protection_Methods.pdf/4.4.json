@@ -1,0 +1,15 @@
+{
+    "no": "4.4",
+    "description": "Access to track when there is lightning risk. Removed checking of weather information via 'LIGHTNING INFO' on SMRT Intranet.",
+    "tags": [
+        "safety",
+        "track access",
+        "lightning",
+        "weather"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        1,
+        2
+    ]
+}

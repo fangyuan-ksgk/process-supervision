@@ -1,0 +1,14 @@
+{
+    "no": "3.1",
+    "description": "Authorities granting approval for access during Traffic Hours.",
+    "tags": [
+        "authority",
+        "approval",
+        "traffic hours"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        9,
+        9
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "no": "8.4",
+    "description": "Actions required by Duty TAM in handling book-outs under various TOA conditions.",
+    "tags": [
+        "duty TAM",
+        "TOA",
+        "track access",
+        "book-out"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        1,
+        83
+    ]
+}

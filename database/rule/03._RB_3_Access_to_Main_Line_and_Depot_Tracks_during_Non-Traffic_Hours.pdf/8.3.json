@@ -1,0 +1,14 @@
+{
+    "no": "8.3",
+    "description": "Actions by Duty CC of the affected line when informed about work during non-traffic hours likely to extend into traffic hours.",
+    "tags": [
+        "Duty CC",
+        "non-traffic hours",
+        "extension"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        80,
+        80
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "no": "8.6",
+    "description": "Coordination by Duty TSC for train service during Traffic Hours.",
+    "tags": [
+        "duty TSC",
+        "train service",
+        "traffic hours"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        1,
+        85
+    ]
+}

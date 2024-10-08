@@ -1,0 +1,14 @@
+{
+    "no": "4.1.b.iii",
+    "description": "Face the direction from which trains normally approach when on tracks.",
+    "tags": [
+        "safety",
+        "train direction",
+        "track awareness"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        13,
+        13
+    ]
+}

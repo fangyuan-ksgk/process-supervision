@@ -1,0 +1,14 @@
+{
+    "no": "1.2",
+    "description": "Identifies the personnel whose duties require track access.",
+    "tags": [
+        "personnel",
+        "duties",
+        "track access"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        4,
+        4
+    ]
+}

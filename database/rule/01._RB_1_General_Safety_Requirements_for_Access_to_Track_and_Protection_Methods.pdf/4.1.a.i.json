@@ -1,0 +1,15 @@
+{
+    "no": "4.1.a.i",
+    "description": "Staff must wear Personal Protective Equipment such as helmet, vest, shoes, and torchlight before accessing the track.",
+    "tags": [
+        "safety",
+        "PPE",
+        "equipment",
+        "track access"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        11,
+        12
+    ]
+}

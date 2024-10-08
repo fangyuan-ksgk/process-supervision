@@ -1,0 +1,16 @@
+{
+    "no": "5.8",
+    "description": "Procedure for PIC (Patrolling Team) passing a Red Flashing Light (RFL) during track access. Authorization steps are provided for different situations.",
+    "tags": [
+        "safety",
+        "patrolling",
+        "RFL",
+        "procedure",
+        "authorization"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        53,
+        53
+    ]
+}

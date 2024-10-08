@@ -1,0 +1,15 @@
+{
+    "no": "4.1.b.i",
+    "description": "Perform a radio check with TSC when accessing the track.",
+    "tags": [
+        "communication",
+        "TSC",
+        "radio check",
+        "track access"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        13,
+        13
+    ]
+}

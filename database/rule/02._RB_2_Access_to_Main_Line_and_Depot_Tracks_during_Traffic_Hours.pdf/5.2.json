@@ -1,0 +1,14 @@
+{
+    "no": "5.2",
+    "description": "Removed PKS deactivation in fall back mode as invalid.",
+    "tags": [
+        "PKS",
+        "deactivation",
+        "fall back mode"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        1,
+        5
+    ]
+}

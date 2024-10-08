@@ -1,0 +1,15 @@
+{
+    "no": "10.2",
+    "description": "Workflow on Booking out at MRT Station for Access to Transfer Berth during Non-Traffic Hours.",
+    "tags": [
+        "booking out",
+        "MRT station",
+        "transfer berth",
+        "workflow"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        109,
+        109
+    ]
+}

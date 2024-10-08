@@ -1,0 +1,15 @@
+{
+    "no": "10.2",
+    "description": "Overview of Booking-In and Booking-Out for Access to Depot Track, detailing procedures and responsibilities for PM/PIC and Duty CMD.",
+    "tags": [
+        "booking",
+        "access",
+        "depot track",
+        "procedures"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        1,
+        62
+    ]
+}

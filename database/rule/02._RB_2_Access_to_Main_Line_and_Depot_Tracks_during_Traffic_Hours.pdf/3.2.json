@@ -1,0 +1,14 @@
+{
+    "no": "3.2",
+    "description": "Role of CC for approval of access to main line track during Traffic Hours.",
+    "tags": [
+        "approval",
+        "traffic hours",
+        "role of CC"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        10,
+        10
+    ]
+}

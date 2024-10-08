@@ -1,0 +1,14 @@
+{
+    "no": "7.1",
+    "description": "Maintain communication using proper radio protocol when near main line track.",
+    "tags": [
+        "communication",
+        "radio protocol",
+        "main line track"
+    ],
+    "file_path": "raw/rulebook/04. RB 4_Duties and Responsibilities of PM, PIC, LOM and HSM.pdf",
+    "page_range": [
+        29,
+        30
+    ]
+}

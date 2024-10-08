@@ -38,17 +38,26 @@ def fill_file_path(rule_list, file_path):
         rule['file_path'] = file_path
     return rule_list
 
-def sanity_check_on_rule(rule: dict):
+def sanity_check_on_rule(rule: dict) -> bool:
     """ 
     Sanity Check for a Rule Dict
     """
     if 'no' not in rule or 'description' not in rule or 'tags' not in rule or 'page_range' not in rule:
+        print(f"Rule does not contain all required fields: {rule}")
         return False
     
-    if '.' not in rule['no'] or ('.' in rule['no'] and len(rule['no'].split(".")) == 2 and rule['no'].split('.')[-1].isdigit()):
+    # Check if 'no' contains at least one dot and has a valid format
+    if '.' not in rule['no']:
+        print(f"Rule does not contain a dot: {rule}")
         return False
     
-    if rule['page_range'][0] >= rule['page_range'][1] or len(rule['page_range']) != 2:
+    parts = rule['no'].split('.')
+    if len(parts)==2 and not parts[-1].isdigit():
+        print(f"Rule does not have a valid number: {rule}")
+        return False
+    
+    # Check if page_range is valid
+    if not isinstance(rule['page_range'], (list, tuple)) or len(rule['page_range']) != 2:
         return False
     
     return True

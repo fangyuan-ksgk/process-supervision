@@ -1,0 +1,15 @@
+{
+    "no": "10.1",
+    "description": "Application process for access to depot track, including scheduling and work request submission procedures.",
+    "tags": [
+        "application",
+        "depot track",
+        "work request",
+        "procedure"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        1,
+        60
+    ]
+}

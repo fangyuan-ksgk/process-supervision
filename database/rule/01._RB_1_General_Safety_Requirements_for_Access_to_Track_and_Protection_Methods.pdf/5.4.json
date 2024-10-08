@@ -1,0 +1,14 @@
+{
+    "no": "5.4",
+    "description": "Protection by securing points method revised to use protection point OFF and ON sectors.",
+    "tags": [
+        "safety",
+        "protection",
+        "securing points"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        1,
+        2
+    ]
+}

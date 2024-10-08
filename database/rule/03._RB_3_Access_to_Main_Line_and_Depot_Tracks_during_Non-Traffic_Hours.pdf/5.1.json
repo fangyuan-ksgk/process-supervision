@@ -1,0 +1,16 @@
+{
+    "no": "5.1",
+    "description": "Workflow on Booking in at MRT Station for Access to Track during Non-Traffic Hours.",
+    "tags": [
+        "workflow",
+        "booking",
+        "MRT",
+        "track access",
+        "non-traffic hours"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        31,
+        33
+    ]
+}

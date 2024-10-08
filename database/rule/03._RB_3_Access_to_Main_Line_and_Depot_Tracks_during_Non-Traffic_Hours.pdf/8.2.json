@@ -1,0 +1,14 @@
+{
+    "no": "8.2",
+    "description": "Actions by PM and Ground Controller when track access needs to extend into traffic hours.",
+    "tags": [
+        "PM actions",
+        "Ground Controller",
+        "traffic hours"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        78,
+        79
+    ]
+}

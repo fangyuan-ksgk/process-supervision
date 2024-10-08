@@ -1,0 +1,15 @@
+{
+    "no": "10.1",
+    "description": "Workflow on Access to Transfer Berth during Non-Traffic Hours.",
+    "tags": [
+        "workflow",
+        "transfer berth",
+        "tool-box brief",
+        "access"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        106,
+        107
+    ]
+}

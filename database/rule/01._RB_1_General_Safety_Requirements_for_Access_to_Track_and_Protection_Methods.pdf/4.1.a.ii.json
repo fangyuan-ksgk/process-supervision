@@ -1,0 +1,14 @@
+{
+    "no": "4.1.a.ii",
+    "description": "Ensure protection methods are in place before gaining track access.",
+    "tags": [
+        "safety",
+        "protection",
+        "track access"
+    ],
+    "file_path": "raw/rulebook/01. RB 1_General Safety Requirements for Access to Track and Protection Methods.pdf",
+    "page_range": [
+        11,
+        12
+    ]
+}

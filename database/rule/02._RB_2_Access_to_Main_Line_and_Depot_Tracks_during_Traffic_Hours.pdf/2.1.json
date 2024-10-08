@@ -1,0 +1,14 @@
+{
+    "no": "2.1",
+    "description": "Conditions for using authorized procedures for Traffic Hours Track Access.",
+    "tags": [
+        "conditions",
+        "procedures",
+        "traffic hours"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        7,
+        7
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "no": "8.3.f",
+    "description": "Ensure protection for track access during Traffic Hours when near a crossover, siding, or adjacent track.",
+    "tags": [
+        "track access",
+        "protection",
+        "traffic hours",
+        "crossover",
+        "siding"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        81,
+        82
+    ]
+}

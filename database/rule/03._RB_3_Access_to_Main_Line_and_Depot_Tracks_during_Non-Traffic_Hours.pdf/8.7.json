@@ -1,0 +1,15 @@
+{
+    "no": "8.7",
+    "description": "Actions by RSM to update line progress and confirm protections during book-out.",
+    "tags": [
+        "RSM",
+        "line progress",
+        "protections",
+        "book-out"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        85,
+        86
+    ]
+}

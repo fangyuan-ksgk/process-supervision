@@ -1,0 +1,15 @@
+{
+    "no": "8.3.h",
+    "description": "Check with duty RSM or SM for necessary arrangements including protection and traction power.",
+    "tags": [
+        "check arrangements",
+        "duty RSM",
+        "protection",
+        "traction power"
+    ],
+    "file_path": "raw/rulebook/03. RB 3_Access to Main Line and Depot Tracks during Non-Traffic Hours.pdf",
+    "page_range": [
+        81,
+        82
+    ]
+}

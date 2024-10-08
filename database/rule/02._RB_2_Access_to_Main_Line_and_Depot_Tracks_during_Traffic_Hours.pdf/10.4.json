@@ -1,0 +1,14 @@
+{
+    "no": "10.4",
+    "description": "Switching Off Traction Power, including the use of voltage testers, RRBC, and communication protocols.",
+    "tags": [
+        "traction power",
+        "safety",
+        "procedure"
+    ],
+    "file_path": "raw/rulebook/02. RB 2_Access to Main Line and Depot Tracks during Traffic Hours.pdf",
+    "page_range": [
+        67,
+        69
+    ]
+}
