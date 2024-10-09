@@ -5,7 +5,7 @@ from typing import List, Tuple
 import numpy as np
 import re 
 from sentence_transformers import SentenceTransformer
-from .rule import Rule, load_rules
+from .rule import Rule, load_rules, rules_to_string
 from .utils import get_pdf_contents, get_oai_response
 
 
@@ -44,42 +44,19 @@ def retrieve_relevant_rules(query, rules_str):
 
 
 class RuleRetriever:
-    def __init__(self, rules: List[Rule], model_name: str = "all-MiniLM-L6-v2", method: str = "llm"):
-        self.rules = rules
-        self.method = method
-        if method == "embedding":
-            self.model = SentenceTransformer(model_name)
-            self.rule_embeddings = self._compute_rule_embeddings()
+    def __init__(self, rule_dir: str = "database/rule/01._RB_1_General_Safety_Requirements_for_Access_to_Track_and_Protection_Methods.pdf"):
+        self.rules = load_rules(rule_dir)
 
-    def _compute_rule_embeddings(self):
-        texts = [f"{rule.no} {rule.description}" for rule in self.rules]
-        return self.model.encode(texts)
-
-    def retrieve(self, query: str, top_k: int = 3) -> List[Tuple[Rule, float]]:
-        if self.method == "llm":
-            return self._retrieve_llm(query, top_k)
-        elif self.method == "embedding":
-            return self._retrieve_embedding(query, top_k)
-        else:
-            raise ValueError("Invalid retrieval method. Choose 'llm' or 'embedding'.")
-
-    def _retrieve_llm(self, query: str, top_k: int = 3) -> List[Tuple[Rule, float]]:
-        rules_str = "\n".join([f"Rule {rule.no}: {rule.description}" for rule in self.rules])
-        relevant_rule_numbers = retrieve_relevant_rules(query, rules_str)
-        
-        results = []
-        for rule_no in relevant_rule_numbers[:top_k]:
-            rule = next((r for r in self.rules if r.no == rule_no), None)
-            if rule:
-                results.append((rule, 1.0))  # Using 1.0 as a placeholder score
-        
-        return results
-
-    def _retrieve_embedding(self, query: str, top_k: int = 3) -> List[Tuple[Rule, float]]:
-        query_embedding = self.model.encode(query)
-        similarities = np.dot(self.rule_embeddings, query_embedding)
-        top_indices = np.argsort(similarities)[::-1][:top_k]
-        return [(self.rules[i], similarities[i]) for i in top_indices]
+    def _retrieve_relevant_rules(self, query: str):
+        rules_str = rules_to_string(self.rules)
+        rules_no = retrieve_relevant_rules(query, rules_str)
+        rules_from_no = [rule for rule in self.rules if rule.no in rules_no]
+        return rules_from_no
+    
+    def __call__(self, query: str):
+        relevant_rules = self._retrieve_relevant_rules(query)
+        return relevant_rules[0]
+    
 
 
 
