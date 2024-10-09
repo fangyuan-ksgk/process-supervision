@@ -7,10 +7,24 @@ from PIL import Image, ImageDraw, ImageFont
 from pdf2image import convert_from_path
 import io
 
-def pdf_to_img(pdf_file, first_page=1, last_page=1):
-    # Convert the specified page range of the PDF to an image
-    images = convert_from_path(pdf_file, first_page=first_page, last_page=last_page)        
-    return images[0]
+def pdf_to_img(file_path, first_page=1, last_page=1):
+    # Convert PDF pages to images
+    img_pages = convert_from_path(file_path, first_page=first_page, last_page=last_page)
+
+    # Calculate the total width and maximum height
+    total_width = sum(page.width for page in img_pages)
+    max_height = max(page.height for page in img_pages)
+
+    # Create a new image with the calculated dimensions
+    combined_img = Image.new('RGB', (total_width, max_height))
+
+    # Paste each page into the combined image
+    x_offset = 0
+    for page in img_pages:
+        combined_img.paste(page, (x_offset, 0))
+        x_offset += page.width
+
+    return combined_img
 
 def file_to_img(file_path, first_page=1, last_page=1):
     if file_path.endswith(".pdf"):
@@ -39,11 +53,14 @@ def file_to_preprocessed_img(file_path, first_page=1, last_page=1):
     else:
         raise ValueError("Unknown file format")
 
-    # Convert image to base64-encoded JPEG with reduced quality
+    # Convert image to PNG
     buffered = io.BytesIO()
-    img.save(buffered, format="JPEG", quality=50)
-    img_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
-    return img_base64
+    img.save(buffered, format="PNG")
+    
+    # Convert PNG to base64
+    image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+    return image_base64
+
 
 @dataclass
 class Rule:
@@ -61,8 +78,10 @@ class Rule:
     def preprocessed_image(self):
         """ 
         Used for Image Prompting
+        Returns a tuple of (base64_encoded_image, media_type)
         """
-        return file_to_preprocessed_img(self.file_path, *self.page_range)
+        img_base64 = file_to_preprocessed_img(self.file_path, *self.page_range)
+        return img_base64
         
     
     def save(self, rule_dir: str = "database/rule"):

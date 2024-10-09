@@ -1,0 +1,75 @@
+
+vars: {
+  d2-config: {
+    sketch: true
+  }
+}
+classes: {
+  process: {
+    label: ""
+    shape: rectangle
+    style: {
+      fill: lightblue
+      shadow: true
+    }
+  }
+}
+
+Staff_member.class: process
+Staff_member.label: "Staff member"
+Staff_member: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Walking/working_on_or_near_track.class: process
+Walking/working_on_or_near_track.label: "Walking/working on or near track"
+Walking/working_on_or_near_track: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Absolutely_necessary.class: process
+Absolutely_necessary.label: "Absolutely necessary"
+Absolutely_necessary: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Required_by_duties.class: process
+Required_by_duties.label: "Required by duties"
+Required_by_duties: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Staff_member -> Walking/working_on_or_near_track: {
+  label: "allowed only when"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Absolutely_necessary -> Walking/working_on_or_near_track: {
+  label: "must be"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Required_by_duties -> Walking/working_on_or_near_track: {
+  label: "must be"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}

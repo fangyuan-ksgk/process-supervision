@@ -6,6 +6,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
+import io
 import base64
 import subprocess
 
@@ -325,6 +326,23 @@ def visualize_graph(graph: nx.DiGraph):
         img.show()
     else:
         print("Failed to generate or save the PNG file.")
+        
+def query_to_filename(query: str):
+    """ 
+    Convert query to a valid filename by removing or replacing invalid characters
+    """
+    # Remove any non-alphanumeric characters except hyphens and underscores
+    sanitized = re.sub(r'[^\w\-]', '', query)
+    # Replace spaces with hyphens
+    sanitized = sanitized.replace(' ', '-')
+    # Convert to lowercase
+    sanitized = sanitized.lower()
+    # Trim to a reasonable length (e.g., 50 characters)
+    sanitized = sanitized[:50]
+    # Ensure the filename is not empty
+    if not sanitized:
+        sanitized = "unnamed-query"
+    return sanitized
 
 def preprocess_image(query: str, graph: nx.DiGraph):
     """ 
@@ -335,7 +353,7 @@ def preprocess_image(query: str, graph: nx.DiGraph):
     # Store
     img_folder = f"database/evaluation/images"
     os.makedirs(img_folder, exist_ok=True)
-    file_name = query.replace(" ", "-")
+    file_name = query_to_filename(query)
     store_graph(img_folder, file_name, graph) 
     
     # Load Image
@@ -346,6 +364,38 @@ def preprocess_image(query: str, graph: nx.DiGraph):
     
     image_media_type = "image/png"
     return image_base64, image_media_type
+
+
+def combine_images(diagram_img, input_img: str):
+    """ 
+    Combine diagram image and input image into one image
+    """
+    # Convert base64 strings to PIL Images
+    def base64_to_pil(base64_str, img_type):
+        img_data = base64.b64decode(base64_str)
+        return Image.open(io.BytesIO(img_data))
+
+    diagram_pil = base64_to_pil(diagram_img, "image/png")
+    input_pil = base64_to_pil(input_img, "image/png")
+
+    # Resize images to have the same height
+    max_height = max(diagram_pil.height, input_pil.height)
+    diagram_pil = diagram_pil.resize((int(diagram_pil.width * max_height / diagram_pil.height), max_height))
+    input_pil = input_pil.resize((int(input_pil.width * max_height / input_pil.height), max_height))
+
+    # Create a new image with the combined width
+    combined_width = diagram_pil.width + input_pil.width
+    combined_img = Image.new('RGB', (combined_width, max_height))
+
+    # Paste the images side by side
+    combined_img.paste(diagram_pil, (0, 0))
+    combined_img.paste(input_pil, (diagram_pil.width, 0))
+
+    # Convert back to base64
+    buffer = io.BytesIO()
+    combined_img.save(buffer, format="PNG")
+    combined_img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    return combined_img_base64, combined_img
 
 
 def enhance_logical_graph(query, graph):
@@ -398,3 +448,60 @@ def igp(query: str):
     final_answer = graph_based_answer(query, enhanced_graph)
     
     return final_answer, enhanced_graph
+
+# Variant of IGP required : it needs to take in extra image input from retrieved documents 
+
+def prepare_image_grounded_graph_prompt(query: str):
+    """
+    Prepare the prompt for creating a logical graph grounded in the input image
+    """
+    prompt = f"""Given the query: '{query}'
+    
+    Analyze the provided image, which contains relevant information to answer the query.
+    Create a logical graph that maps the thinking process to answer the query, using information from the image.
+    Apply the Occam's Razor principle to keep the graph as simple as possible while capturing the essential reasoning.
+    
+    Provide your response in JSON format with 'nodes' and 'edges'.
+    
+    Example:
+    {{
+        "nodes": ["A", "B", "C"],
+        "edges": [
+            {{"from": "A", "to": "B", "relationship": "relates to"}},
+            {{"from": "B", "to": "C", "relationship": "leads to"}}
+        ]
+    }}
+    
+    Ensure that the nodes and relationships in your graph are directly related to the content of the image and the query."""
+    
+    return prompt
+
+# def igp_with_image(query: str, input_image_base64: str, input_image_type: str = "base64"):
+#     """
+#     Iterative Graph Prompting with image input, creating a grounded logical graph
+#     """
+        
+#     # Generate initial graph grounded in the image
+#     initial_prompt = prepare_image_grounded_graph_prompt(query)
+#     initial_response = get_claude_response(initial_prompt, img=input_image_base64, img_type=input_image_type)
+    
+#     logical_graph, _ = parse_logical_graph(initial_response)
+    
+#      # Prepare the diagram
+#     diagram_img, diagram_img_type = preprocess_image(query, logical_graph)
+    
+#     # Prepare the prompt for answering with both diagram and input image
+#     answer_prompt = f"""Answer the query: '{query}'.
+#     Use the graph in the first image to guide your reasoning. This graph was created based on the information in the second image.
+#     The second image is the original document containing relevant information for the query.
+#     Provide a comprehensive answer that integrates insights from both the reasoning graph and the input image.
+#     If you need to refer to specific parts of the input image, please do so clearly."""
+    
+#     # Get the final answer using both the diagram and input image
+#     response = get_claude_response(
+#         answer_prompt,
+#         img=[diagram_img, input_image_base64],
+#         img_type=[diagram_img_type, input_image_type]
+#     )
+    
+#     return response, logical_graph
