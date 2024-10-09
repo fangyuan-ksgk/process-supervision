@@ -25,49 +25,9 @@ Accident_Prevention_on_SMRT: {
     shadow: true
   }
 }
-Regular_Maintenance.class: process
-Regular_Maintenance.label: "Regular Maintenance"
-Regular_Maintenance: {
-  style: {
-    opacity: 1
-    stroke: "black"
-    stroke-width: 2
-    shadow: true
-  }
-}
-Staff_Training.class: process
-Staff_Training.label: "Staff Training"
-Staff_Training: {
-  style: {
-    opacity: 1
-    stroke: "black"
-    stroke-width: 2
-    shadow: true
-  }
-}
-Passenger_Education.class: process
-Passenger_Education.label: "Passenger Education"
-Passenger_Education: {
-  style: {
-    opacity: 1
-    stroke: "black"
-    stroke-width: 2
-    shadow: true
-  }
-}
 AI-Automated_Maintenance.class: process
 AI-Automated_Maintenance.label: "AI-Automated Maintenance"
 AI-Automated_Maintenance: {
-  style: {
-    opacity: 1
-    stroke: "black"
-    stroke-width: 2
-    shadow: true
-  }
-}
-Predictive_Maintenance.class: process
-Predictive_Maintenance.label: "Predictive Maintenance"
-Predictive_Maintenance: {
   style: {
     opacity: 1
     stroke: "black"
@@ -85,9 +45,9 @@ Real-time_Monitoring: {
     shadow: true
   }
 }
-Automated_Inspection.class: process
-Automated_Inspection.label: "Automated Inspection"
-Automated_Inspection: {
+Data_Collection.class: process
+Data_Collection.label: "Data Collection"
+Data_Collection: {
   style: {
     opacity: 1
     stroke: "black"
@@ -95,9 +55,9 @@ Automated_Inspection: {
     shadow: true
   }
 }
-Data_Analysis.class: process
-Data_Analysis.label: "Data Analysis"
-Data_Analysis: {
+Safety_Protocols.class: process
+Safety_Protocols.label: "Safety Protocols"
+Safety_Protocols: {
   style: {
     opacity: 1
     stroke: "black"
@@ -105,9 +65,9 @@ Data_Analysis: {
     shadow: true
   }
 }
-Machine_Learning_Algorithms.class: process
-Machine_Learning_Algorithms.label: "Machine Learning Algorithms"
-Machine_Learning_Algorithms: {
+Predictive_Analysis.class: process
+Predictive_Analysis.label: "Predictive Analysis"
+Predictive_Analysis: {
   style: {
     opacity: 1
     stroke: "black"
@@ -115,80 +75,48 @@ Machine_Learning_Algorithms: {
     shadow: true
   }
 }
-Accident_Prevention_on_SMRT -> Regular_Maintenance: {
-  label: "requires"
-  style.stroke: black
-  style.opacity: 1
-  style.stroke-width: 2
-}
-Accident_Prevention_on_SMRT -> Staff_Training: {
-  label: "involves"
-  style.stroke: black
-  style.opacity: 1
-  style.stroke-width: 2
-}
-Accident_Prevention_on_SMRT -> Passenger_Education: {
-  label: "includes"
-  style.stroke: black
-  style.opacity: 1
-  style.stroke-width: 2
+Automated_Scheduling.class: process
+Automated_Scheduling.label: "Automated Scheduling"
+Automated_Scheduling: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
 }
 Accident_Prevention_on_SMRT -> AI-Automated_Maintenance: {
-  label: "can be improved by"
-  style.stroke: black
-  style.opacity: 1
-  style.stroke-width: 2
-}
-AI-Automated_Maintenance -> Predictive_Maintenance: {
-  label: "enables"
+  label: "implemented through"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
 AI-Automated_Maintenance -> Real-time_Monitoring: {
-  label: "facilitates"
+  label: "includes"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-AI-Automated_Maintenance -> Automated_Inspection: {
-  label: "implements"
+AI-Automated_Maintenance -> Data_Collection: {
+  label: "starts with"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-AI-Automated_Maintenance -> Data_Analysis: {
-  label: "utilizes"
+Real-time_Monitoring -> Safety_Protocols: {
+  label: "reinforces"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-Predictive_Maintenance -> Regular_Maintenance: {
-  label: "enhances"
+Data_Collection -> Predictive_Analysis: {
+  label: "enables"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-Real-time_Monitoring -> Accident_Prevention_on_SMRT: {
-  label: "contributes to"
-  style.stroke: black
-  style.opacity: 1
-  style.stroke-width: 2
-}
-Automated_Inspection -> Regular_Maintenance: {
-  label: "improves"
-  style.stroke: black
-  style.opacity: 1
-  style.stroke-width: 2
-}
-Data_Analysis -> Machine_Learning_Algorithms: {
-  label: "employs"
-  style.stroke: black
-  style.opacity: 1
-  style.stroke-width: 2
-}
-Machine_Learning_Algorithms -> Predictive_Maintenance: {
-  label: "powers"
+Predictive_Analysis -> Automated_Scheduling: {
+  label: "informs"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2

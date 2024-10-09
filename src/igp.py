@@ -18,7 +18,7 @@ def prepare_graph_prompt(query: str, initial: bool = True):
     if initial:
         initial_prompt = f"""Given query: {query}
 
-        Create a logical graph to map your thinking process. Provide your response in JSON format with 'nodes' and 'edges'.
+        Create a logical graph to map your thinking process. Apply the Occam's Razor principle to keep the graph as simple as possible while still capturing the essential reasoning. Provide your response in JSON format with 'nodes' and 'edges'.
 
         Example:
         {{
@@ -29,13 +29,13 @@ def prepare_graph_prompt(query: str, initial: bool = True):
             ]
         }}
 
-        Please provide a similar JSON structure for the given query."""
+        Please provide a similar JSON structure for the given query, focusing on the most essential elements and relationships."""
         return initial_prompt
         
     else:
         enhance_prompt = f"""Given query: {query}
 
-        Analyze the diagram and update the graph to improve the reasoning process. Consider adding missing elements, refining existing ones, or addressing any gaps.
+        Analyze the diagram and update the graph to improve the reasoning process. Apply Occam's Razor principle to simplify the graph where possible. Consider removing unnecessary elements, refining existing ones, or addressing any gaps while maintaining simplicity.
 
         Provide your response in JSON format with 'nodes' and 'edges', like this:
 
@@ -47,7 +47,7 @@ def prepare_graph_prompt(query: str, initial: bool = True):
             ]
         }}
 
-        Please provide an updated graph based on your analysis."""
+        Please provide an updated graph based on your analysis, ensuring it remains as simple and concise as possible while still capturing the core reasoning."""
         return enhance_prompt
 
 
@@ -368,11 +368,33 @@ def enhance_logical_graph(query, graph):
         return graph, ""  # Return original graph when an error occurs
     
     
+
+# ... existing code ...
+
+def prepare_graph_query_prompt(query: str):
+    """
+    Prepare a prompt to query the graph for an answer using visual prompting
+    """
+    prompt = f"Answer the query: '{query}'. Use the graph in the image to guide your reasoning."
+    
+    return prompt
+
+def graph_based_answer(query: str, graph: nx.DiGraph):
+    """
+    Generate an answer based on the graph structure using visual prompting
+    """
+    prompt = prepare_graph_query_prompt(query)
+    img, img_type = preprocess_image(query, graph)
+    response = get_claude_response(prompt, img, img_type)
+    return response
+    
 def igp(query: str): 
     """
     Iterative Graph Prompting
     """
     initial_graph = get_logical_graph(query)
-    enhanced_graph, advice_str = enhance_logical_graph(query, initial_graph)
+    enhanced_graph, _ = enhance_logical_graph(query, initial_graph)
     
-    return enhanced_graph, advice_str
+    final_answer = graph_based_answer(query, enhanced_graph)
+    
+    return final_answer, enhanced_graph
