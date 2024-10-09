@@ -319,9 +319,7 @@ def visualize_graph(graph: nx.DiGraph):
     
     if png_path:
         # Open the PNG file using Pillow
-        from PIL import Image
         img = Image.open(png_path)
-        
         # Display the image
         img.show()
     else:
@@ -366,35 +364,39 @@ def preprocess_image(query: str, graph: nx.DiGraph):
     return image_base64, image_media_type
 
 
-def combine_images(diagram_img, input_img: str):
+def combine_images(diagram_img, input_img: str, num_pages: int = 1):
     """ 
-    Combine diagram image and input image into one image
+    Combine diagram image and input image into one image, side by side
     """
-    # Convert base64 strings to PIL Images
-    def base64_to_pil(base64_str, img_type):
+    def base64_to_pil(base64_str):
         img_data = base64.b64decode(base64_str)
         return Image.open(io.BytesIO(img_data))
 
-    diagram_pil = base64_to_pil(diagram_img, "image/png")
-    input_pil = base64_to_pil(input_img, "image/png")
+    diagram_pil = base64_to_pil(diagram_img)
+    input_pil = base64_to_pil(input_img)
 
-    # Resize images to have the same height
-    max_height = max(diagram_pil.height, input_pil.height)
-    diagram_pil = diagram_pil.resize((int(diagram_pil.width * max_height / diagram_pil.height), max_height))
-    input_pil = input_pil.resize((int(input_pil.width * max_height / input_pil.height), max_height))
+    # Calculate the target width for both images
+    target_diagram_width = input_pil.width // num_pages
+    target_height = input_pil.height
+    
+    # Diagram needs RESIZING to match target_diagram_width (but keep its aspect ratio)
+    target_diagram_height = int(diagram_pil.height * target_diagram_width / diagram_pil.width)
+    diagram_pil = diagram_pil.resize((target_diagram_width, target_diagram_height), Image.LANCZOS)
+    
+    total_width = target_diagram_width + input_pil.width
 
-    # Create a new image with the combined width
-    combined_width = diagram_pil.width + input_pil.width
-    combined_img = Image.new('RGB', (combined_width, max_height))
+    # Create a new white image with the combined width and max height
+    combined_img = Image.new('RGB', (total_width, target_height), color='white')
 
     # Paste the images side by side
-    combined_img.paste(diagram_pil, (0, 0))
-    combined_img.paste(input_pil, (diagram_pil.width, 0))
+    combined_img.paste(diagram_pil, (0, (target_height - target_diagram_height) // 2))
+    combined_img.paste(input_pil, (target_diagram_width, 0))
 
     # Convert back to base64
     buffer = io.BytesIO()
     combined_img.save(buffer, format="PNG")
     combined_img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
     return combined_img_base64, combined_img
 
 
@@ -476,32 +478,31 @@ def prepare_image_grounded_graph_prompt(query: str):
     
     return prompt
 
-# def igp_with_image(query: str, input_image_base64: str, input_image_type: str = "base64"):
-#     """
-#     Iterative Graph Prompting with image input, creating a grounded logical graph
-#     """
-        
-#     # Generate initial graph grounded in the image
-#     initial_prompt = prepare_image_grounded_graph_prompt(query)
-#     initial_response = get_claude_response(initial_prompt, img=input_image_base64, img_type=input_image_type)
+
+def igp_with_image(query: str, input_image_base64: str, num_pages: int = 1, input_image_type: str= "image/png", system_prompt: str = "You are a helpful assistant."):
+
+    # Generate initial graph grounded in the image
+    initial_prompt = prepare_image_grounded_graph_prompt(query)
+    initial_response = get_claude_response(initial_prompt, img=input_image_base64, img_type=input_image_type, system_prompt=system_prompt)
+
+    # Parse the logical graph from the response
+    logical_graph, _ = parse_logical_graph(initial_response)
+
+    # Prepare the diagram
+    diagram_img, _ = preprocess_image(query, logical_graph)
+
+    # Combine Image
+    combined_img_base64, combined_img = combine_images(diagram_img, input_image_base64, num_pages)
+
+    # Visual Prompting 
+    answer_prompt = f"""Answer the query: '{query}'.
+    Use the information from both the reasoning graph and the original document shown in the image to provide a comprehensive answer."""
+
+    # Get the final answer using both the diagram and input image
+    response = get_claude_response(
+        answer_prompt,
+        img=combined_img_base64,
+        img_type="image/png"
+    )
     
-#     logical_graph, _ = parse_logical_graph(initial_response)
-    
-#      # Prepare the diagram
-#     diagram_img, diagram_img_type = preprocess_image(query, logical_graph)
-    
-#     # Prepare the prompt for answering with both diagram and input image
-#     answer_prompt = f"""Answer the query: '{query}'.
-#     Use the graph in the first image to guide your reasoning. This graph was created based on the information in the second image.
-#     The second image is the original document containing relevant information for the query.
-#     Provide a comprehensive answer that integrates insights from both the reasoning graph and the input image.
-#     If you need to refer to specific parts of the input image, please do so clearly."""
-    
-#     # Get the final answer using both the diagram and input image
-#     response = get_claude_response(
-#         answer_prompt,
-#         img=[diagram_img, input_image_base64],
-#         img_type=[diagram_img_type, input_image_type]
-#     )
-    
-#     return response, logical_graph
+    return response, logical_graph, combined_img

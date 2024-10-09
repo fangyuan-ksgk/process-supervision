@@ -15,9 +15,9 @@ classes: {
   }
 }
 
-Staff_member.class: process
-Staff_member.label: "Staff member"
-Staff_member: {
+Staff_authorized_to_walk/work_on/near_track.class: process
+Staff_authorized_to_walk/work_on/near_track.label: "Staff authorized to walk/work on/near track"
+Staff_authorized_to_walk/work_on/near_track: {
   style: {
     opacity: 1
     stroke: "black"
@@ -25,9 +25,9 @@ Staff_member: {
     shadow: true
   }
 }
-Walking/working_on_or_near_track.class: process
-Walking/working_on_or_near_track.label: "Walking/working on or near track"
-Walking/working_on_or_near_track: {
+Comply_with_Basic_Rules.class: process
+Comply_with_Basic_Rules.label: "Comply with Basic Rules"
+Comply_with_Basic_Rules: {
   style: {
     opacity: 1
     stroke: "black"
@@ -35,9 +35,9 @@ Walking/working_on_or_near_track: {
     shadow: true
   }
 }
-Absolutely_necessary.class: process
-Absolutely_necessary.label: "Absolutely necessary"
-Absolutely_necessary: {
+Before_Access_to_Track.class: process
+Before_Access_to_Track.label: "Before Access to Track"
+Before_Access_to_Track: {
   style: {
     opacity: 1
     stroke: "black"
@@ -45,9 +45,9 @@ Absolutely_necessary: {
     shadow: true
   }
 }
-Required_by_duties.class: process
-Required_by_duties.label: "Required by duties"
-Required_by_duties: {
+Personal_Protective_Equipment.class: process
+Personal_Protective_Equipment.label: "Personal Protective Equipment"
+Personal_Protective_Equipment: {
   style: {
     opacity: 1
     stroke: "black"
@@ -55,20 +55,84 @@ Required_by_duties: {
     shadow: true
   }
 }
-Staff_member -> Walking/working_on_or_near_track: {
-  label: "allowed only when"
+Protection_methods_in_place.class: process
+Protection_methods_in_place.label: "Protection methods in place"
+Protection_methods_in_place: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Number_of_Staff_in_Working_Party.class: process
+Number_of_Staff_in_Working_Party.label: "Number of Staff in Working Party"
+Number_of_Staff_in_Working_Party: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Trainer_to_Trainee_Ratio.class: process
+Trainer_to_Trainee_Ratio.label: "Trainer to Trainee Ratio"
+Trainer_to_Trainee_Ratio: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Tool-box_Brief_conducted.class: process
+Tool-box_Brief_conducted.label: "Tool-box Brief conducted"
+Tool-box_Brief_conducted: {
+  style: {
+    opacity: 1
+    stroke: "black"
+    stroke-width: 2
+    shadow: true
+  }
+}
+Staff_authorized_to_walk/work_on/near_track -> Comply_with_Basic_Rules: {
+  label: "must"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-Absolutely_necessary -> Walking/working_on_or_near_track: {
-  label: "must be"
+Comply_with_Basic_Rules -> Before_Access_to_Track: {
+  label: "includes"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-Required_by_duties -> Walking/working_on_or_near_track: {
-  label: "must be"
+Before_Access_to_Track -> Personal_Protective_Equipment: {
+  label: "requires"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Before_Access_to_Track -> Protection_methods_in_place: {
+  label: "ensures"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Before_Access_to_Track -> Number_of_Staff_in_Working_Party: {
+  label: "considers"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Before_Access_to_Track -> Trainer_to_Trainee_Ratio: {
+  label: "follows"
+  style.stroke: black
+  style.opacity: 1
+  style.stroke-width: 2
+}
+Before_Access_to_Track -> Tool-box_Brief_conducted: {
+  label: "includes"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2

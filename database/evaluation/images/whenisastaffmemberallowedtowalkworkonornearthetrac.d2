@@ -25,9 +25,9 @@ Staff_authorized_to_walk/work_on/near_track: {
     shadow: true
   }
 }
-Comply_with_Basic_Rules.class: process
-Comply_with_Basic_Rules.label: "Comply with Basic Rules"
-Comply_with_Basic_Rules: {
+Comply_with_basic_rules.class: process
+Comply_with_basic_rules.label: "Comply with basic rules"
+Comply_with_basic_rules: {
   style: {
     opacity: 1
     stroke: "black"
@@ -55,9 +55,9 @@ Personal_Protective_Equipment: {
     shadow: true
   }
 }
-Protection_methods_in_place.class: process
-Protection_methods_in_place.label: "Protection methods in place"
-Protection_methods_in_place: {
+Protection_methods.class: process
+Protection_methods.label: "Protection methods"
+Protection_methods: {
   style: {
     opacity: 1
     stroke: "black"
@@ -85,9 +85,9 @@ Trainer_to_Trainee_Ratio: {
     shadow: true
   }
 }
-Tool-box_Brief_conducted.class: process
-Tool-box_Brief_conducted.label: "Tool-box Brief conducted"
-Tool-box_Brief_conducted: {
+Tool-box_Brief.class: process
+Tool-box_Brief.label: "Tool-box Brief"
+Tool-box_Brief: {
   style: {
     opacity: 1
     stroke: "black"
@@ -95,44 +95,44 @@ Tool-box_Brief_conducted: {
     shadow: true
   }
 }
-Staff_authorized_to_walk/work_on/near_track -> Comply_with_Basic_Rules: {
+Staff_authorized_to_walk/work_on/near_track -> Comply_with_basic_rules: {
   label: "must"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-Comply_with_Basic_Rules -> Before_Access_to_Track: {
+Comply_with_basic_rules -> Before_Access_to_Track: {
   label: "includes"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
 Before_Access_to_Track -> Personal_Protective_Equipment: {
-  label: "requires"
+  label: "be equipped with"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-Before_Access_to_Track -> Protection_methods_in_place: {
-  label: "ensures"
+Before_Access_to_Track -> Protection_methods: {
+  label: "ensure"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
 Before_Access_to_Track -> Number_of_Staff_in_Working_Party: {
-  label: "considers"
+  label: "consider"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
 Before_Access_to_Track -> Trainer_to_Trainee_Ratio: {
-  label: "follows"
+  label: "adhere to"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
 }
-Before_Access_to_Track -> Tool-box_Brief_conducted: {
-  label: "includes"
+Before_Access_to_Track -> Tool-box_Brief: {
+  label: "conduct"
   style.stroke: black
   style.opacity: 1
   style.stroke-width: 2
