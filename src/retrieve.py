@@ -55,7 +55,7 @@ class RuleRetriever:
     
     def __call__(self, query: str):
         relevant_rules = self._retrieve_relevant_rules(query)
-        return relevant_rules[0]
+        return relevant_rules[0] if len(relevant_rules) > 0 else None
     
 
 
